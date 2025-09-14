@@ -1,17 +1,40 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import localFont from 'next/font/local';
 import "./globals.css";
-import SessionProviderWrapper from "@/components/SessionProviderWrapper";
+import Navbar from "@/components/Navbar";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const satoshi = localFont({
+  src: [
+    {
+      path: '../public/fonts/Satoshi-Light.woff2',
+      weight: '300',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Satoshi-Regular.woff2',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Satoshi-Medium.woff2',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Satoshi-Bold.woff2',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../public/fonts/Satoshi-Black.woff2',
+      weight: '900',
+      style: 'normal',
+    },
+  ],
+  variable: '--font-satoshi',
+  display: 'swap', // Ensures text is visible during font loading
 });
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+;
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,15 +48,28 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <SessionProviderWrapper>
 
-          {children}
-        </SessionProviderWrapper>
+      <body className={`${satoshi.className} h-screen`}
+      >
+        <div className="min-h-screen w-full relative">
+          {/* Orchid Depths */}
+          <div
+            className="absolute inset-0 z-0"
+            style={{
+              background: "radial-gradient(125% 125% at 50% 10%, #000000 40%, #350136 100%)",
+            }}
+          />
+          {/* Your Content/Components */}
+          <div className="relative z-10">
+            <Navbar />
+            {children}
+          </div>
+        </div>
+
 
       </body>
     </html>
   );
 }
+
+// bg-[linear-gradient(to_bottom,#342A3E_0%,#000000_100%)]

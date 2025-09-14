@@ -1,38 +1,56 @@
-"use client";
-import React, { useState } from "react";
-import { HoveredLink, Menu, MenuItem, ProductItem } from "./ui/navbar-menu";
-import { cn } from "@/lib/utils";
-import { Button } from "./ui/button";
+import React from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Plus } from 'lucide-react';
 
-
-
-export default function Navbar({ className }: { className?: string }) {
-    const [active, setActive] = useState<string | null>(null);
+export default function Navbar() {
     return (
-        <div
-            className={cn("fixed top-0 inset-x-0 w-full mx-auto z-50 bg-black/20 backdrop-blur-md border-b border-purple-900/30", className)}
-        >
-            <div className="flex items-center justify-between px-8 py-4 max-w-7xl mx-auto">
-                <div className="flex items-center gap-2">
-                    <h1 className="text-2xl font-bold bg-gradient-to-r from-purple-400 to-purple-600 bg-clip-text text-transparent">
-                        PromptVault
-                    </h1>
+        <>
+            <header className=" bg-transparent backdrop-blur-sm sticky top-0 z-50 border-rounded-lg">
+                <div className="container mx-auto px-4 py-4 flex items-center justify-between max-w-6xl">
+                    <div className="flex items-center space-x-2">
+                        {/* Logo */}
+                        <Image src="/Logo.png" alt="Logo" width={40} height={40} className="" />
+                        <span className="text-2xl font-semibold bg-gradient-to-r text-white dark:text-white bg-clip-text hidden sm:block ">
+                            Vible
+                        </span>
+                    </div>
+                    <div className='flex items-center space-x-4'>
+                        {/* Navigation Links */}
+                        <nav className=" md:flex space-x-4">
+                            <Link href="/home" className="text-white font-bold  hover:text-blue-900">Home</Link>
+                            <Link href="/trending " className="text-white font-medium hover:text-blue-900">Trending</Link>
+                            {/* <Link href="/submit" className="text-white font-medium hover:text-blue-900">Submit</Link> */}
+                        </nav>
+
+
+                    </div>
+                    {/* <div className="flex items-center space-x-4">
+                        <Link href="/submit" className="text-white font-medium hover:text-blue-900">Submit prompt</Link>
+                    </div> */}
+
+                    <div className="flex items-center">
+                        <Link
+                            href="/submit"
+                            className="
+            px-4 py-2 
+            text-sm font-medium text-white 
+            bg-white/5  // Very subtle transparent background
+            border border-white/20 
+            rounded-lg 
+            backdrop-blur-sm // Adds a frosted glass effect
+            transition-all duration-300 ease-in-out 
+            hover:bg-white/10 
+            hover:border-white/40
+        "
+                        >
+                            Submit Prompt
+                        </Link>
+                    </div>
                 </div>
-                <Menu setActive={setActive}>
-                    <MenuItem setActive={setActive} active={active} item="Trending">
-                        <HoveredLink href="/trending">Explore Trending Prompts</HoveredLink>
-                    </MenuItem>
-                    <MenuItem setActive={setActive} active={active} item="Submit">
-                        <HoveredLink href="/submit">Submit New Prompt</HoveredLink>
-                    </MenuItem>
-                    <MenuItem setActive={setActive} active={active} item="Categories">
-                        <HoveredLink href="/categories">Browse Categories</HoveredLink>
-                    </MenuItem>
-                </Menu>
-                <Button className="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-lg font-medium">
-                    Explore Prompt
-                </Button>
-            </div>
-        </div>
-    );
+            </header>
+
+        </>
+    )
 }
+
