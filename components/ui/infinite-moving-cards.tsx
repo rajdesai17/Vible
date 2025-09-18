@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import Image, { StaticImageData } from "next/image"; // CHANGE 1: Import StaticImageData
+import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 export const InfiniteMovingCards = ({
@@ -15,7 +15,7 @@ export const InfiniteMovingCards = ({
     quote: string;
     name: string;
     title: string;
-    image?: StaticImageData; // CHANGE 1: Update the type
+    image?: string;
   }[];
   direction?: "left" | "right";
   speed?: "fast" | "normal" | "slow";

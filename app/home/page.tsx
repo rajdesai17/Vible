@@ -1,6 +1,5 @@
 "use client";
 import { TrendingCards } from '@/components/trendingCards';
-import { HoverBorderGradient } from '@/components/ui/hover-border-gradient';
 import React from 'react';
 import { GrainGradient } from '@paper-design/shaders-react';
 import { useRouter } from 'next/navigation';
