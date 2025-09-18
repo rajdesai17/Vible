@@ -1,8 +1,8 @@
 import PromptSubmissionForm from '@/components/promptSubmissionForm';
 
 export const metadata = {
-    title: 'Submit a Prompt | Vible',
-    description: 'Share your amazing AI image prompts with the Vible community.',
+    title: 'Submit a Prompt | Imagine',
+    description: 'Share your amazing AI image prompts with the Imagine community.',
 };
 
 export default function SubmitPage() {

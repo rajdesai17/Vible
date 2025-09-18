@@ -107,7 +107,7 @@ export default function PromptSubmissionForm() {
                     Submit Your Visual Prompt
                 </h2>
                 <p className="text-center text-sm text-gray-400">
-                    Share your creativity with the Vible community.
+                    Share your creativity with the Imagine community.
                 </p>
 
                 <form className="mt-5 space-y-6" onSubmit={handleSubmit}>

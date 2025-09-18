@@ -38,7 +38,7 @@ const satoshi = localFont({
 ;
 
 export const metadata: Metadata = {
-  title: "Vible - Visual Prompts for AI Art",
+  title: "Imagine - Visual Prompts for AI Art",
   description: "Discover, Create, and Share Stunning AI Art Prompts",
   icons: {
     icon: '/Logo.png'
