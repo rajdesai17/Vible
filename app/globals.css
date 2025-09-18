@@ -121,6 +121,15 @@
   }
 }
 
+/* Hide scrollbars while allowing scroll */
+.no-scrollbar {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
 @keyframes scroll {
   from {
     transform: translateX(0);

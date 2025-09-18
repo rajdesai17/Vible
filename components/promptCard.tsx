@@ -146,7 +146,7 @@ export default function PromptCard({
                                 <div className="flex-1 relative mb-4 overflow-hidden">
                                     <p
                                         ref={promptRef}
-                                        className="text-sm text-white leading-relaxed"
+                                        className="text-sm text-white leading-relaxed h-full overflow-auto no-scrollbar pr-2"
                                     >
                                         {prompt}
                                     </p>
@@ -207,7 +207,7 @@ export default function PromptCard({
                             <div className="flex-1 relative mb-4 overflow-hidden">
                                 <p
                                     ref={promptRef}
-                                    className="text-sm text-white leading-relaxed"
+                                    className="text-sm text-white leading-relaxed h-full overflow-auto no-scrollbar pr-2"
                                 >
                                     {prompt}
                                 </p>
