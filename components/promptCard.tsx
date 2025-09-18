@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { ChevronLeft, ChevronRight, Copy, Tag, Sparkles, Check, Instagram, Twitter } from 'lucide-react';
+import { Copy, Tag, Sparkles, Check, Instagram, Twitter } from 'lucide-react';
 import Image from 'next/image';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -72,14 +72,16 @@ export default function PromptCard({
         return Math.abs(offset) * velocity;
     };
 
-    const paginate = (newDirection: number) => {
+    const paginate = () => {
         setCurrentSlide(currentSlide === 0 ? 1 : 0);
     };
+
+    const isPromptView = imageUrl ? currentSlide === 1 : currentSlide === 0;
 
     return (
         <Card className="relative w-full aspect-square max-w-[500px] min-w-[350px] bg-black border border-white/20 overflow-hidden rounded-xl shadow-lg">
             {/* Only show copy button on prompt view */}
-            {currentSlide === 0 && (
+            {isPromptView && (
                 <div className="absolute top-4 right-4 z-10">
                     <Button
                         variant="ghost"
@@ -111,16 +113,87 @@ export default function PromptCard({
                         const swipe = swipePower(offset.x, velocity.x);
 
                         if (swipe < -swipeConfidenceThreshold) {
-                            paginate(1);
+                            paginate();
                         } else if (swipe > swipeConfidenceThreshold) {
-                            paginate(-1);
+                            paginate();
                         }
                     }}
                     className="absolute inset-0"
                 >
-                    {currentSlide === 0 ? (
-                        <div className="h-full p-6 flex flex-col">
-                            {/* Header with badges */}
+                    {imageUrl ? (
+                        currentSlide === 0 ? (
+                            <div className="relative h-full w-full">
+                                <Image
+                                    src={imageUrl}
+                                    alt="Prompt Result"
+                                    fill
+                                    className="object-cover"
+                                    sizes="500px"
+                                />
+                            </div>
+                        ) : (
+                            <div className="h-full p-6 pb-16 flex flex-col">
+                                <div className="flex items-start gap-2 mb-4">
+                                    <Badge variant="outline" className="bg-purple-500/10 text-purple-500 hover:bg-purple-500/20">
+                                        <Tag className="w-3 h-3 mr-1" />
+                                        {tag}
+                                    </Badge>
+                                    <Badge variant="outline" className="bg-blue-500/10 text-blue-500 hover:bg-blue-500/20">
+                                        <Sparkles className="w-3 h-3 mr-1" />
+                                        {aiTool}
+                                    </Badge>
+                                </div>
+                                <div className="flex-1 relative mb-4 overflow-hidden">
+                                    <p
+                                        ref={promptRef}
+                                        className="text-sm text-white leading-relaxed"
+                                    >
+                                        {prompt}
+                                    </p>
+                                    {isOverflowing && (
+                                        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none" />
+                                    )}
+                                </div>
+                                {proTip && (
+                                    <div className=" p-3 bg-yellow-500/5 rounded-lg border border-yellow-500/20">
+                                        <div className="flex items-center gap-1.5 mb-1">
+                                            <span className="text-xs font-medium text-yellow-500">💡 Pro Tip</span>
+                                        </div>
+                                        <p className="text-xs text-muted-foreground">
+                                            {proTip}
+                                        </p>
+                                    </div>
+                                )}
+                                {(instagramHandle || twitterHandle) && (
+                                    <div className="flex justify-center gap-2 mt-auto pt-3 border-t border-white/10">
+                                        {instagramHandle && (
+                                            <a
+                                                href={`https://instagram.com/${instagramHandle.replace('@', '')}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-pink-500/10 hover:bg-pink-500/20 text-pink-400 transition-colors"
+                                            >
+                                                <Instagram className="w-3.5 h-3.5" />
+                                                <span className="text-xs font-medium">@{instagramHandle.replace('@', '')}</span>
+                                            </a>
+                                        )}
+                                        {twitterHandle && (
+                                            <a
+                                                href={`https://x.com/${twitterHandle.replace('@', '')}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="inline-flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 transition-colors"
+                                            >
+                                                <Twitter className="w-3.5 h-3.5" />
+                                                <span className="text-xs font-medium">@{twitterHandle.replace('@', '')}</span>
+                                            </a>
+                                        )}
+                                    </div>
+                                )}
+                            </div>
+                        )
+                    ) : (
+                        <div className="h-full p-6 pb-16 flex flex-col">
                             <div className="flex items-start gap-2 mb-4">
                                 <Badge variant="outline" className="bg-purple-500/10 text-purple-500 hover:bg-purple-500/20">
                                     <Tag className="w-3 h-3 mr-1" />
@@ -131,8 +204,6 @@ export default function PromptCard({
                                     {aiTool}
                                 </Badge>
                             </div>
-
-                            {/* Main prompt content */}
                             <div className="flex-1 relative mb-4 overflow-hidden">
                                 <p
                                     ref={promptRef}
@@ -144,8 +215,6 @@ export default function PromptCard({
                                     <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent pointer-events-none" />
                                 )}
                             </div>
-
-                            {/* Pro Tip - Compact style */}
                             {proTip && (
                                 <div className=" p-3 bg-yellow-500/5 rounded-lg border border-yellow-500/20">
                                     <div className="flex items-center gap-1.5 mb-1">
@@ -156,11 +225,8 @@ export default function PromptCard({
                                     </p>
                                 </div>
                             )}
-
-                            {/* Social handles - centered to avoid overlap */}
                             {(instagramHandle || twitterHandle) && (
                                 <div className="flex justify-center gap-2 mt-auto pt-3 border-t border-white/10">
-                                    {/* pb-17 */}
                                     {instagramHandle && (
                                         <a
                                             href={`https://instagram.com/${instagramHandle.replace('@', '')}`}
@@ -186,40 +252,19 @@ export default function PromptCard({
                                 </div>
                             )}
                         </div>
-                    ) : (
-                        imageUrl && (
-                            <div className="relative h-full w-full">
-                                <Image
-                                    src={imageUrl}
-                                    alt="Prompt Result"
-                                    fill
-                                    className="object-cover"
-                                    sizes="500px"
-                                />
-                            </div>
-                        )
                     )}
                 </motion.div>
             </AnimatePresence>
 
-            {/* Navigation buttons with better positioning */}
+            {/* Toggle button to switch between image and prompt */}
             {imageUrl && (
-                <div className="absolute left-6 right-6 bottom-6 flex justify-between z-10">
+                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10">
                     <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 bg-background/50 backdrop-blur-sm hover:bg-background/80"
-                        onClick={() => paginate(-1)}
+                        variant="glass"
+                        className="px-4 py-2"
+                        onClick={() => paginate()}
                     >
-                        <ChevronLeft className="h-5 w-5" />
-                    </Button>
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="h-8 w-8 bg-background/50 backdrop-blur-sm hover:bg-background/80"
-                        onClick={() => paginate(1)}
-                    >
-                        <ChevronRight className="h-5 w-5" />
+                        {isPromptView ? 'Show Result' : 'Show Prompt'}
                     </Button>
                 </div>
             )}
