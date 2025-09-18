@@ -1,15 +1,31 @@
 "use client";
-import Navbar from '@/components/Navbar'
 import { TrendingCards } from '@/components/trendingCards';
-import { Button } from '@/components/ui/button';
 import { HoverBorderGradient } from '@/components/ui/hover-border-gradient';
 import React from 'react'
+import { GrainGradient } from '@paper-design/shaders-react';
 
 export default function page() {
 
     return (
         <>
             <div className="relative z-10 mx-auto ">
+                <div className="absolute inset-0 -z-10">
+                    <GrainGradient
+                        height={"100vh"}
+                        width={"100%"}
+                        colors={["#7300ff", "#eba8ff", "#00bfff", "#2b00ff"]}
+                        colorBack="#000000"
+                        softness={0.5}
+                        intensity={0.5}
+                        noise={0.1}
+                        shape="corners"
+                        offsetX={0}
+                        offsetY={0}
+                        scale={2}
+                        rotation={0}
+                        speed={1}
+                    />
+                </div>
                 <div className='flex flex-col mx-auto justify-center mt-10 px-4 sm:px-6 lg:px-8 '>
 
                     <h1 className='text-4xl sm:text-5xl md:text-6xl text-gray-300 font-medium text-center'>
