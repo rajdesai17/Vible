@@ -1,8 +1,9 @@
 "use client";
 import { TrendingCards } from '@/components/trendingCards';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { GrainGradient } from '@paper-design/shaders-react';
 import { useRouter } from 'next/navigation';
+import { mockPrompts } from '@/lib/mockPrompts';
 
 
 export default function page() {
@@ -11,6 +12,24 @@ export default function page() {
     const handleExploreClick = () => {
         router.push('/trending');
     };
+
+    // Preload critical images
+    useEffect(() => {
+        const preloadImages = () => {
+            // Preload first 4 images for better performance
+            mockPrompts.slice(0, 4).forEach((prompt) => {
+                if (prompt.imageUrl) {
+                    const link = document.createElement('link');
+                    link.rel = 'preload';
+                    link.as = 'image';
+                    link.href = prompt.imageUrl;
+                    document.head.appendChild(link);
+                }
+            });
+        };
+
+        preloadImages();
+    }, []);
 
     return (
         <>
