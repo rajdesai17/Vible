@@ -54,7 +54,7 @@ export default function page() {
                             onClick={handleExploreClick}
                             className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold text-lg sm:text-xl px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl"
                         >
-                            Explore
+                            View Prompt Collection
                         </button>
                     </div>
                 </div>
