@@ -78,9 +78,9 @@ export default function TrendingPage() {
     }
 
     return (
-        <div className="min-h-screen py-4 sm:py-6 lg:py-8">
+        <div className="min-h-screen pt-20 py-4 sm:py-6 lg:py-8">
             {/* Container with responsive margins */}
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 mt-20">
                 <h1 className="text-3xl sm:text-4xl font-semibold text-gray-400 text-center mb-8 sm:mb-10 lg:mb-12">
                     Trending Prompts
                 </h1>

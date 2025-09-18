@@ -8,11 +8,11 @@ import { GrainGradient } from '@paper-design/shaders-react';
 export default function page() {
     return (
         <>
-            <div className="relative z-10 mx-auto ">
-                <div className="absolute inset-0 -z-10">
+            <div className="relative z-10 mx-auto min-h-screen">
+                <div className="fixed inset-0 -z-10 pointer-events-none">
                     <GrainGradient
                         height="100vh"
-                        width="100%"
+                        width="100vw"
                         colors={[
                             "#7300ff", // color1
                             "#eba8ff", // color2

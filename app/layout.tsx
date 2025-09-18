@@ -68,9 +68,7 @@ export default function RootLayout({
             <PillNav
               items={[
                 { label: 'Home', href: '/' },
-                { label: 'About', href: '/about' },
-                { label: 'Services', href: '/services' },
-                { label: 'Contact', href: '/contact' }
+                { label: 'Explore', href: '/trending' }
               ]}
               activeHref="/"
               className="custom-nav"
