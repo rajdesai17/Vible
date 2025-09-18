@@ -31,30 +31,22 @@ export default function page() {
                         speed={1.0}
                     />
                 </div>
-                <div className="flex flex-col mx-auto justify-center px-4 sm:px-6 lg:px-8 ">
-                    <h1 className="text-4xl sm:text-5xl md:text-6xl text-gray-300 font-medium text-center mt-30">
-                        Unlock the World of <span className="block">Visual Prompts</span>
+                <div className="flex flex-col mx-auto justify-center px-4 sm:px-6 lg:px-8 mt-10">
+                    <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-white font-black text-center leading-tight tracking-tight mt-20">
+                        <span className="block bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500 bg-clip-text text-transparent">
+                            IMAGINE
+                        </span>
+                        <span className="block text-gray-200 font-extrabold text-3xl sm:text-4xl md:text-5xl lg:text-6xl mt-4">
+                            BEYOND LIMITS
+                        </span>
                     </h1>
-                    <p className="text-base sm:text-lg text-gray-500 font-medium pt-6 sm:pt-8 text-center px-4">
-                        Discover, Filter, and fall in love with the prompts that speak your vibe.
-                    </p>
-                </div>
-                <div className="flex flex-wrap justify-center items-center my-8 gap-4 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
-                    <HoverBorderGradient className="text-sm sm:text-base cursor-pointer">
-                        <span className="text-white">Vintage Desi</span>
-                    </HoverBorderGradient>
-                    <HoverBorderGradient className="text-sm sm:text-base cursor-pointer">
-                        <span className="text-white">Delulu</span>
-                    </HoverBorderGradient>
-                    <HoverBorderGradient className="text-sm sm:text-base cursor-pointer">
-                        <span className="text-white">Artify</span>
-                    </HoverBorderGradient>
-                    <HoverBorderGradient className="text-sm sm:text-base cursor-pointer">
-                        <span className="text-white">Baddie Mode</span>
-                    </HoverBorderGradient>
-                    <HoverBorderGradient className="text-sm sm:text-base cursor-pointer">
-                        <span className="text-white">Going Viral</span>
-                    </HoverBorderGradient>
+                    <p className="text-xl sm:text-2xl md:text-3xl text-gray-300 font-bold pt-8 sm:pt-12 text-center px-4 max-w-4xl mx-auto leading-relaxed">
+                    A collection of prompts to create trending visuals.                    </p>
+                    <div className="flex justify-center mt-8 sm:mt-12">
+                        <button className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold text-lg sm:text-xl px-8 py-4 rounded-full transition-all duration-300 transform hover:scale-105 shadow-2xl">
+                            Explore
+                        </button>
+                    </div>
                 </div>
                 <TrendingCards />
             </div>
