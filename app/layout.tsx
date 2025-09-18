@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import localFont from 'next/font/local';
 import "./globals.css";
-import Navbar from "@/components/Navbar";
+import PillNav from "@/components/PillNav";
+import "@/components/PillNav.css";
 
 const satoshi = localFont({
   src: [
@@ -64,7 +65,21 @@ export default function RootLayout({
           />
           {/* Your Content/Components */}
           <div className="relative z-10">
-            <Navbar />
+            <PillNav
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'About', href: '/about' },
+                { label: 'Services', href: '/services' },
+                { label: 'Contact', href: '/contact' }
+              ]}
+              activeHref="/"
+              className="custom-nav"
+              ease="power2.easeOut"
+              baseColor="#000000"
+              pillColor="#ffffff"
+              hoveredPillTextColor="#ffffff"
+              pillTextColor="#000000"
+            />
             {children}
           </div>
         </div>
